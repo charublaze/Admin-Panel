@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo App</title>
+        <script src="js/angular.min.js"></script>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" >
+        <style>
+            .done-true {
+                text-decoration: line-through;
+                color: greenyellow; 
+            }
+            .done-false {
+                text-decoration: none;
+                color: red; 
+            }
+            .done-t {
+                color: greenyellow; 
+            }
+            .done-f {
+                color: red; 
+            }
+        </style>
+
+
+    </head>
+
+    <body >
+
+        <div style="margin: auto; width: 30%; height: 1000px" ng-app="toDoApp" ng-controller="mainController">
+            <ul class="list-group">
+                <li class="list-group-item active" align="center">ToDO List</li>
+                <li class="list-group-item" ng-repeat="x in list">
+                    <label ng-class="{'done-true': x.done, 'done-false': !x.done}">{{x.text}}</label>
+                    <span style="float: right; margin-right: 5px;" class="glyphicon glyphicon-remove" ng-click="removeItem($index)"></span>
+                    <span ng-class="{'done-t': x.done, 'done-f': !x.done}" style="float: right; margin-right: 10px" class="glyphicon glyphicon-ok" ng-click="toggle(x)" ></span>
+                </li>
+            </ul>
+
+            <div class="col-xs-10">
+                <form ng-submit="addItem()">
+                    <input class="form-control" ng-model="addMe">
+                </form>
+            </div>
+            <button class="btn btn-success" ng-click="addItem()">Add</button>
+
+            <p>{{errortext}}</p>
+
+        </div>
+    </body>
+    <script src="js/app.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</html>
